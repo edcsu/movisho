@@ -1,19 +1,24 @@
+import { useTheme } from '../../context/ThemeContext';
+
 import logo from '../../assets/logo.svg'
+import darkLogo from '../../assets/logodark.svg'
+
 const Footer: React.FC = () => {
+  const { isDark } = useTheme();
   const date = new Date()
   const currentYear = date.getFullYear()
   return (
-    <footer className="bg-white bottom-0">
+    <footer className="bg-white bottom-0 dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 pt-16 pb-6 sm:px-6 lg:px-8">
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex justify-center text-gray-500 sm:justify-start">
-            <img src={logo} alt="logo" className='h-30'/>
-            <span className='my-10'>Movisho</span>
+            {isDark ? (<img src={darkLogo} alt="logo" className='h-30'/>) :(<img src={logo} alt="logo" className='h-30'/>)}
+            <span className='my-10 ml-2 dark:text-gray-400 text-2xl'>Movisho</span>
           </div>
         </div>
 
-        <div className="mt-16 border-t border-gray-100 pt-6 sm:flex sm:items-center sm:justify-between">
-          <p className="text-center text-sm text-gray-500 sm:text-left">
+        <div className="mt-16 border-t border-gray-100 dark:border-gray-500 pt-4 sm:flex sm:items-center sm:justify-between">
+          <p className="text-center text-sm text-gray-500 sm:text-left dark:text-gray-400">
             Copyright &copy; {currentYear}. All rights reserved.
           </p>
 
@@ -23,7 +28,7 @@ const Footer: React.FC = () => {
                 href="https://www.linkedin.com/in/ssewannonda-keith-edwin-443303129"
                 rel="noreferrer noopener"
                 target="_blank"
-                className="text-gray-700 transition hover:text-gray-700/75"
+                className="text-gray-700 transition hover:text-gray-700/75 dark:text-gray-500 dark:hover:text-gray-500/75"
               >
                 <span className="sr-only">linkedin</span>
                 <svg className="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -41,7 +46,7 @@ const Footer: React.FC = () => {
                 href="https://github.com/edcsu"
                 rel="noreferrer noopener"
                 target="_blank"
-                className="text-gray-700 transition hover:text-gray-700/75"
+                className="text-gray-700 transition hover:text-gray-700/75 dark:text-gray-500 dark:hover:text-gray-500/75"
               >
                 <span className="sr-only">GitHub</span>
                 <svg className="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -59,7 +64,7 @@ const Footer: React.FC = () => {
                 href="https://x.com/skeith696"
                 rel="noreferrer noopener"
                 target="_blank"
-                className="text-gray-700 transition hover:text-gray-700/75"
+                className="text-gray-700 transition hover:text-gray-700/75 dark:text-gray-500 dark:hover:text-gray-500/75"
               >
                 <span className="sr-only">x</span>
                 <svg className="size-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
