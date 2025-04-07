@@ -1,10 +1,11 @@
 import { NavLink } from 'react-router-dom'
 import logo from '../../assets/logo.svg'
 import { useState } from 'react'
+import ThemeToggle from './ThemeToggle'
 
 const Header: React.FC = () =>{
   const [showMobileMenu, setShowMobileMenu] = useState(false)
-  const linkClasses = 'text-gray-500 transition hover:text-gray-500/75'
+  const linkClasses = 'text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-blue-500/75'
   const activeClasses = 'text-blue-500 transition hover:text-gray-500/75'
   const activeMobile = "flex items-center gap-2 border-s-[3px] border-blue-500 bg-blue-50 px-4 py-3 text-blue-700"
   const inactiveMobile ="flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700"
@@ -14,7 +15,7 @@ const Header: React.FC = () =>{
   }
 
   return (
-    <header className="bg-white">
+    <header className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="md:flex md:items-center md:gap-12">
@@ -22,7 +23,7 @@ const Header: React.FC = () =>{
               <span className="sr-only">Home</span>
               <div className='flex items-center'>
                 <img className='h-12' src={logo} alt='logo' />
-                <span className="text-gray-500 text-2xl">Movisho</span>
+                <span className="text-gray-500 text-2xl ml-2 dark:text-white dark:hover:text-white/75">Movisho</span>
               </div>
             </NavLink>
           </div>
@@ -84,6 +85,7 @@ const Header: React.FC = () =>{
           </div>
 
           <div className="flex items-center gap-4">
+            <ThemeToggle />
             <form action="">
               <label htmlFor="search">
                 <div className="relative rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
