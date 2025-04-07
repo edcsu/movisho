@@ -2,7 +2,7 @@ import './App.css'
 import { RouterProvider } from "react-router";
 import router from './routes';
 
-function App() {
+const App: React.FC = () => {
 
   return (
     <RouterProvider router={router}>

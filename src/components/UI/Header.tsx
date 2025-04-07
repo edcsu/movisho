@@ -1,7 +1,8 @@
 import { NavLink } from 'react-router-dom'
 import logo from '../../assets/logo.svg'
 import { useState } from 'react'
-const Header = () => {
+
+const Header: React.FC = () =>{
   const [showMobileMenu, setShowMobileMenu] = useState(false)
   const linkClasses = 'text-gray-500 transition hover:text-gray-500/75'
   const activeClasses = 'text-blue-500 transition hover:text-gray-500/75'

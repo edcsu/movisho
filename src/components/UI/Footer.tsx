@@ -1,5 +1,5 @@
 import logo from '../../assets/logo.svg'
-const Footer = () => {
+const Footer: React.FC = () => {
   const date = new Date()
   const currentYear = date.getFullYear()
   return (
