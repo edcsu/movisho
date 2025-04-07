@@ -1,6 +1,6 @@
 const MoviesPage = () => {
   return (
-    <main>MoviesPage</main>
+    <>MoviesPage</>
   )
 }
 
