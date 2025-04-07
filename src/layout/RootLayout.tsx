@@ -4,13 +4,13 @@ import Footer from '../components/UI/Footer'
 
 const RootLayout = () => {
   return (
-    <>
+    <div className='flex flex-col h-screen justify-between'>
         <Header />
         <main>
             <Outlet />
         </main>
         <Footer/>
-    </>
+    </div>
   )
 }
 
