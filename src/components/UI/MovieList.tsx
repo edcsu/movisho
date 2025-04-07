@@ -1,6 +1,13 @@
-const MovieList = () => {
+import MovieCard from "./MovieCard"
+
+const MovieList = ({ response }) => {
+  const { results } = response
   return (
-    <div>MovieList</div>
+    <>
+      {results.map( movie => (
+        <MovieCard key={movie.id} movie={movie} />
+      ))}
+    </>
   )
 }
 

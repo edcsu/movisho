@@ -1,14 +1,19 @@
-const MovieCard = () => {
+import { NavLink } from "react-router-dom"
+
+const MovieCard = ({ movie}) => {
+  const moviePic = `${import.meta.env.VITE_TMDB_IMAGE_URL}/${movie.poster_path}`
   return (
     <div className="card bg-base-100 w-96 shadow-sm">
-      <figure>
-        <img
-          src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-          alt="Shoes" />
-      </figure>
+      <NavLink to={`movies/${movie.id}`}>
+        <figure>
+          <img
+            src={moviePic}
+            alt={movie.title} />
+        </figure>
+      </NavLink>
       <div className="card-body">
-        <h2 className="card-title">Card Title</h2>
-        <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+        <h2 className="card-title">{movie.title}</h2>
+        <p>{movie.overview}</p>
         <div className="card-actions justify-end">
           <button type="button" className="btn btn-primary">Buy Now</button>
         </div>

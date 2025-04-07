@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import MovieDetails from "../pages/movies/MovieDetailsPage";
 import RootLayout from "../layout/RootLayout";
-import MoviesPage from "../pages/movies/IndexPage";
+import MoviesPage, { loader as MoviesNowLoader } from "../pages/movies/IndexPage";
 import Search from "../pages/movies/SearchPage";
 import ErrorPage from "../pages/ErrorPage";
 import TopRatedPage from "../pages/movies/TopRatedPage";
@@ -16,14 +16,16 @@ const router = createBrowserRouter([
         children: [
             {
                 index : true,
-                element : <MoviesPage />
+                element : <MoviesPage />,
+                loader: MoviesNowLoader
             },
             {
                 path : 'movies',
                 children: [
                     {
                         index : true,
-                        element : <MoviesPage />
+                        element : <MoviesPage />,
+                        // loader: MoviesNowLoader
                     },
                     {
                         path: 'popular',

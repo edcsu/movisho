@@ -11,7 +11,7 @@ const Header: React.FC = () =>{
   const linkClasses = 'text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-blue-500/75'
   const activeClasses = 'text-blue-500 transition hover:text-gray-500/75'
   const activeMobile = "flex items-center gap-2 border-s-[3px] border-blue-500 bg-blue-50 px-4 py-3 text-blue-500 bg-gray-300"
-  const inactiveMobile ="flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 text-gray-500 bg-gray-900 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700"
+  const inactiveMobile ="flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 dark:text-gray-500 dark:bg-gray-900 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700"
 
   const handleMobileMenuToggle = () => {
     setShowMobileMenu(prevState => !prevState)
