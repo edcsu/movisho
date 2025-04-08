@@ -1,24 +1,27 @@
 import { NavLink } from "react-router-dom"
+import { Result } from "../../types/movieresponse";
 
-const MovieCard = ({ movie}) => {
+type Props = {
+  movie: Result
+};
+
+const MovieCard: React.FC<Props> = ({ movie } : Props)  => {
   const moviePic = `${import.meta.env.VITE_TMDB_IMAGE_URL}/${movie.poster_path}`
   return (
-    <div className="card bg-base-100 w-96 shadow-sm">
+    <article className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm transition hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <NavLink to={`movies/${movie.id}`}>
         <figure>
           <img
             src={moviePic}
-            alt={movie.title} />
+            alt={movie.title} 
+          />
         </figure>
-      </NavLink>
-      <div className="card-body">
-        <h2 className="card-title">{movie.title}</h2>
-        <p>{movie.overview}</p>
-        <div className="card-actions justify-end">
-          <button type="button" className="btn btn-primary">Buy Now</button>
+        <div className="flex flex-col justify-between p-4 leading-normal">
+          <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{movie.title}</h2>
+          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{movie.overview}</p>
         </div>
-      </div>
-    </div>
+      </NavLink>
+    </article>
   )
 }
 

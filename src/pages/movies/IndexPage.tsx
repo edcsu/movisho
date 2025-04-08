@@ -5,13 +5,13 @@ import { Suspense } from "react";
 const MoviesPage = () => {
   const { results } = useLoaderData();
   return (
-    <>
+    <section>
       <Suspense fallback={<p style={{textAlign: 'center'}}>Loading....</p>}>
         <Await resolve={results}>
           {(foundResults) => <MovieList response={foundResults} />}
         </Await>
       </Suspense>
-    </>
+    </section>
   )
 }
 
