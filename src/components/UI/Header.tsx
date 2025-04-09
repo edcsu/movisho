@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { Form, NavLink, useNavigate } from 'react-router-dom'
 import logo from '../../assets/logo.svg'
 import darkLogo from '../../assets/logodark.svg'
 import { useState } from 'react'
@@ -6,6 +6,7 @@ import ThemeToggle from './ThemeToggle'
 import { useTheme } from '../../context/ThemeContext';
 
 const Header: React.FC = () =>{
+  const navigate = useNavigate()
   const [showMobileMenu, setShowMobileMenu] = useState(false)
   const { isDark } = useTheme();
   const linkClasses = 'text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-blue-500/75'
@@ -15,6 +16,14 @@ const Header: React.FC = () =>{
 
   const handleMobileMenuToggle = () => {
     setShowMobileMenu(prevState => !prevState)
+  }
+
+  const handleSearch = (event) => {
+    event.preventDefault()
+    const queryTerm = event.target.value
+    event.target.reset()
+
+    return navigate(`/movie/search?${queryTerm}`)
   }
 
   return (
@@ -89,7 +98,7 @@ const Header: React.FC = () =>{
 
           <div className="flex items-center gap-4">
             <ThemeToggle />
-            <form action="">
+            <Form action='/movies/search' method='post'>
               <label htmlFor="search">
                 <div className="relative rounded-md bg-white dark:bg-gray-300 pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
                   <input
@@ -101,7 +110,7 @@ const Header: React.FC = () =>{
                   />
                   <span className="absolute inset-y-0 right-2 grid w-8 place-content-center">
                     <button
-                      type="button"
+                      type="submit"
                       aria-label="Submit"
                       className="rounded-full p-1.5 text-gray-700 transition-colors hover:bg-gray-100 cursor-pointer"
                     >
@@ -123,7 +132,7 @@ const Header: React.FC = () =>{
                   </span>
                 </div>
               </label>
-            </form>
+            </Form>
           </div>
 
           <div className="block md:hidden">

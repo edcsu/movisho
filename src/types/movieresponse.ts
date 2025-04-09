@@ -1,5 +1,5 @@
 export default interface MovieResponse {
-  dates: Dates;
+  dates: Dates | undefined;
   page: number;
   results: Result[];
   total_pages: number;

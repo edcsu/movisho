@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router";
 import MovieDetails from "../pages/movies/MovieDetailsPage";
 import RootLayout from "../layout/RootLayout";
 import MoviesPage, { loader as moviesNowLoader } from "../pages/movies/IndexPage";
-import Search from "../pages/movies/SearchPage";
+import Search, { loader as searchMovieLoader, action as searchMovieAction } from "../pages/movies/SearchPage";
 import ErrorPage from "../pages/ErrorPage";
 import TopRatedPage, { loader as topRatedLoader } from "../pages/movies/TopRatedPage";
 import PopularPage, { loader as popularMoviesLoader } from "../pages/movies/PopularPage";
@@ -48,8 +48,9 @@ const router = createBrowserRouter([
                     },
                     {
                         path:  'search',
-                        id: 'movie-detail',
-                        element: <Search />
+                        element: <Search />,
+                        action: searchMovieAction,
+                        loader: searchMovieLoader
                     },
                 ]
             }

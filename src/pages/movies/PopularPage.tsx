@@ -1,13 +1,14 @@
 import { Suspense } from "react";
 import { Await, useLoaderData } from "react-router-dom";
 import MovieList from "../../components/UI/MovieList";
+import MovieResponse from "../../types/movieresponse";
 
 const PopularPage = () => {
   const { results } = useLoaderData();
   return (
     <Suspense fallback={<p style={{textAlign: 'center'}}>Loading....</p>}>
       <Await resolve={results}>
-        {(foundResults) => <MovieList response={foundResults} />}
+        {(foundResults: MovieResponse) => <MovieList response={foundResults} />}
       </Await>
     </Suspense>
   )
@@ -16,7 +17,7 @@ const PopularPage = () => {
 export default PopularPage
 
 const loadMovieResults = async() => {
-  const response = await fetch(`${import.meta.env.VITE_TMDB_BASE_URL}/popular?language=en-US&page=1`,{
+  const response = await fetch(`${import.meta.env.VITE_TMDB_BASE_URL}/movie/popular?language=en-US&page=1`,{
     headers: {
       'Content-Type' : 'application/json',
       'Authorization' : `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`

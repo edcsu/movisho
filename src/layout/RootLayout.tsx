@@ -6,9 +6,9 @@ import { ThemeProvider } from '../context/ThemeContext'
 const RootLayout = () => {
   return (
     <ThemeProvider>
-      <div className='flex flex-col h-screen justify-between'>
+      <div className='flex flex-col min-h-screen'>
           <Header />
-          <main>
+          <main className='flex-grow dark:bg-gray-500'>
               <Outlet />
           </main>
           <Footer/>
