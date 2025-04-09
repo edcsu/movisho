@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router";
-import MovieDetails from "../pages/movies/MovieDetailsPage";
+import MovieDetails, { loader as movieDetailsLoader } from "../pages/movies/MovieDetailsPage";
 import RootLayout from "../layout/RootLayout";
 import MoviesPage, { loader as moviesNowLoader } from "../pages/movies/IndexPage";
 import Search, { loader as searchMovieLoader, action as searchMovieAction } from "../pages/movies/SearchPage";
@@ -44,7 +44,8 @@ const router = createBrowserRouter([
                     },
                     {
                         path:  ':id',
-                        element: <MovieDetails />
+                        element: <MovieDetails />,
+                        loader: movieDetailsLoader
                     },
                     {
                         path:  'search',
