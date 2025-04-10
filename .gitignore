@@ -39,3 +39,6 @@ dist-ssr
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# React Router generates types into a .react-router/ directory at the root of your app which is fully managed by React Router
+.react-router/

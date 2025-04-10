@@ -3,6 +3,7 @@ import { useLoaderData, Await, redirect } from "react-router-dom";
 import QueryResponse from "../../types/queryresponse";
 import MovieList from "../../components/UI/MovieList";
 import MovieDetailLoader from "../../components/UI/MovieDetailLoader";
+import type { ActionFunction, LoaderFunction } from "react-router";
 
 const Search: React.FC = () => {
   const { results } = useLoaderData();
@@ -30,17 +31,17 @@ const Search: React.FC = () => {
 
 export default Search
 
-export const action = async ({ request }) => {
+export const action: ActionFunction = async ({ request }) => {
   const data = await request.formData();
   const searchTerm = data.get('search')
-  if (searchTerm === undefined || searchTerm.trim() === '') {
+  if (searchTerm === undefined || searchTerm === null || searchTerm.toString().trim() === '') {
     return redirect('/')
   }
   
-  return redirect(`/movies/search?query=${encodeURIComponent(searchTerm)}`)
+  return redirect(`/movies/search?query=${encodeURIComponent(searchTerm.toString())}`)
 }
 
-const loadMovieResults = async({ request }) => {
+const loadMovieResults = async({ request } : { request : Request }) => {
   const url = new URL(request.url);
   const query = url.searchParams.get("query");
 
@@ -63,7 +64,7 @@ const loadMovieResults = async({ request }) => {
   }
 }
 
-export const loader = async ({ request }) => {
+export const loader: LoaderFunction = async ({ request }) => {
   return {
     results : loadMovieResults({ request })
   }

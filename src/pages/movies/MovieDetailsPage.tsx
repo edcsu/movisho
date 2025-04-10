@@ -3,6 +3,7 @@ import { Await, useLoaderData } from "react-router-dom"
 import MovieDetailResponse from "../../types/moviedetail"
 import MovieDetail from "../../components/UI/MovieDetail"
 import MovieDetailLoader from "../../components/UI/MovieDetailLoader"
+import type { Params } from "react-router-dom";
 
 const MovieDetails = () => {
   const { result } = useLoaderData()
@@ -18,7 +19,7 @@ const MovieDetails = () => {
 
 export default MovieDetails
 
-const loadMovieResult = async({ request, params}) => {
+const loadMovieResult = async({ params }: { params: Params<"id"> }) => {
   const id = params.id
   const response = await fetch(`${import.meta.env.VITE_TMDB_BASE_URL}/movie/${id}`,{
     headers: {
@@ -38,8 +39,8 @@ const loadMovieResult = async({ request, params}) => {
   }
 }
 
-export const loader = async ({ request, params }) => {
+export const loader = async ({ params }: { params: Params<"id"> }) => {
   return {
-    result : loadMovieResult({ request, params})
+    result : loadMovieResult({ params })
   }
 }

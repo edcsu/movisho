@@ -1,4 +1,4 @@
-import { Form, NavLink, useNavigate } from 'react-router-dom'
+import { Form, NavLink } from 'react-router-dom'
 import logo from '../../assets/logo.svg'
 import darkLogo from '../../assets/logodark.svg'
 import { useState } from 'react'
@@ -6,7 +6,6 @@ import ThemeToggle from './ThemeToggle'
 import { useTheme } from '../../context/ThemeContext';
 
 const Header: React.FC = () =>{
-  const navigate = useNavigate()
   const [showMobileMenu, setShowMobileMenu] = useState(false)
   const { isDark } = useTheme();
   const linkClasses = 'text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-blue-500/75'
