@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router"
 import { Result } from "../../types/movieresponse";
 import MoviePoster from "../../assets/movieposter.jpeg"
 import { Suspense } from "react";
