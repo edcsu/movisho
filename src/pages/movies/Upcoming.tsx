@@ -3,9 +3,12 @@ import { useLoaderData, Await } from "react-router";
 import MovieList from "../../components/UI/MovieList";
 import MovieResponse from "../../types/movieresponse";
 import MovieListLoader from "../../components/UI/MovieListLoader";
+import { useTitle } from "../../hooks/useTitle";
 
 const UpcomingPage = () => {
   const { results } = useLoaderData();
+  useTitle('Upcoming')
+
   return (
     <Suspense fallback={<MovieListLoader/>}>
       <Await resolve={results}>

@@ -1,17 +1,26 @@
-import { Form, NavLink } from 'react-router'
+import { Form, NavLink, useLocation } from 'react-router'
 import logo from '../../assets/logo.svg'
 import darkLogo from '../../assets/logodark.svg'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ThemeToggle from './ThemeToggle'
 import { useTheme } from '../../context/ThemeContext';
 
 const Header: React.FC = () =>{
+  const searchRef = useRef<HTMLFormElement>(null)
+  const location = useLocation()
   const [showMobileMenu, setShowMobileMenu] = useState(false)
   const { isDark } = useTheme();
   const linkClasses = 'text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-blue-500/75'
   const activeClasses = 'text-blue-500 transition hover:text-gray-500/75'
   const activeMobile = "flex items-center gap-2 border-s-[3px] border-blue-500 bg-blue-50 px-4 py-3 text-blue-500 bg-gray-300"
   const inactiveMobile ="flex items-center gap-2 border-s-[3px] border-transparent px-4 py-3 dark:text-gray-500 dark:bg-gray-900 hover:border-gray-100 hover:bg-gray-50 hover:text-gray-700"
+  
+  useEffect(() => {
+    // Clear form when not on /results route
+    if (location.pathname !== "/movies/search") {
+      searchRef.current?.reset();
+    }
+  }, [location.pathname]);
 
   const handleMobileMenuToggle = () => {
     setShowMobileMenu(prevState => !prevState)
@@ -89,7 +98,7 @@ const Header: React.FC = () =>{
 
           <div className="flex items-center gap-4">
             <ThemeToggle />
-            <Form action='/movies/search' method='post'>
+            <Form action='/movies/search' method='post' ref={searchRef}>
               <label htmlFor="search">
                 <div className="relative rounded-md bg-white dark:bg-gray-300 pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
                   <input

@@ -3,9 +3,12 @@ import MovieList from "../../components/UI/MovieList";
 import { Suspense } from "react";
 import MovieResponse from "../../types/movieresponse";
 import MovieListLoader from "../../components/UI/MovieListLoader";
+import { useTitle } from "../../hooks/useTitle";
 
 const MoviesPage = () => {
   const { results } = useLoaderData();
+  useTitle('Home')
+  
   return (
     <section>
       <Suspense fallback={<MovieListLoader />}>

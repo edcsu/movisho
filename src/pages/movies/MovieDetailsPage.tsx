@@ -1,12 +1,15 @@
 import { Suspense } from "react"
-import { Await, useLoaderData } from "react-router"
+import { Await, useLoaderData, useParams } from "react-router"
 import MovieDetailResponse from "../../types/moviedetail"
 import MovieDetail from "../../components/UI/MovieDetail"
 import MovieDetailLoader from "../../components/UI/MovieDetailLoader"
 import type { Params } from "react-router";
+import { useTitle } from "../../hooks/useTitle"
 
 const MovieDetails = () => {
   const { result } = useLoaderData()
+  const params = useParams() 
+  useTitle(params.id || '')
 
   return (
     <Suspense fallback={<MovieDetailLoader />}>

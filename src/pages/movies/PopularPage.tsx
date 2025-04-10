@@ -3,9 +3,11 @@ import { Await, useLoaderData } from "react-router";
 import MovieList from "../../components/UI/MovieList";
 import MovieResponse from "../../types/movieresponse";
 import MovieListLoader from "../../components/UI/MovieListLoader";
+import { useTitle } from "../../hooks/useTitle";
 
 const PopularPage = () => {
   const { results } = useLoaderData();
+  useTitle('Popular')
   return (
     <Suspense fallback={<MovieListLoader />}>
       <Await resolve={results}>
