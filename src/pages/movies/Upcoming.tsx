@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { useLoaderData, Await } from "react-router";
 import MovieList from "../../components/UI/MovieList";
 import MovieResponse from "../../types/movieresponse";
@@ -6,6 +6,10 @@ import MovieListLoader from "../../components/UI/MovieListLoader";
 
 const UpcomingPage = () => {
   const { results } = useLoaderData();
+  useEffect(() => {
+    document.title = `Movisho: Upcoming`
+  }, [])
+
   return (
     <Suspense fallback={<MovieListLoader/>}>
       <Await resolve={results}>

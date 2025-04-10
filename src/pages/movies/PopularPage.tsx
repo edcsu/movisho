@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { Await, useLoaderData } from "react-router";
 import MovieList from "../../components/UI/MovieList";
 import MovieResponse from "../../types/movieresponse";
@@ -6,6 +6,10 @@ import MovieListLoader from "../../components/UI/MovieListLoader";
 
 const PopularPage = () => {
   const { results } = useLoaderData();
+  useEffect(() => {
+    document.title = 'Movisho: Popular'
+  }, [])
+  
   return (
     <Suspense fallback={<MovieListLoader />}>
       <Await resolve={results}>

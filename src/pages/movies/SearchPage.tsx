@@ -1,5 +1,5 @@
-import { Suspense } from "react";
-import { useLoaderData, Await, redirect } from "react-router";
+import { Suspense, useEffect } from "react";
+import { useLoaderData, Await, redirect, useSearchParams } from "react-router";
 import QueryResponse from "../../types/queryresponse";
 import MovieList from "../../components/UI/MovieList";
 import type { ActionFunction, LoaderFunction } from "react-router";
@@ -7,6 +7,12 @@ import MovieListLoader from "../../components/UI/MovieListLoader";
 
 const Search: React.FC = () => {
   const { results } = useLoaderData();
+  const [params] = useSearchParams() 
+  const query = params.get('query')
+  useEffect(() => {
+    document.title = `Movisho: Search results for ${query}`
+  }, [])
+
   return (
     <Suspense fallback={<MovieListLoader />}>
       <Await resolve={results}>

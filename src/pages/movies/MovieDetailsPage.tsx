@@ -1,5 +1,5 @@
-import { Suspense } from "react"
-import { Await, useLoaderData } from "react-router"
+import { Suspense, useEffect } from "react"
+import { Await, useLoaderData, useParams } from "react-router"
 import MovieDetailResponse from "../../types/moviedetail"
 import MovieDetail from "../../components/UI/MovieDetail"
 import MovieDetailLoader from "../../components/UI/MovieDetailLoader"
@@ -7,6 +7,10 @@ import type { Params } from "react-router";
 
 const MovieDetails = () => {
   const { result } = useLoaderData()
+  const params = useParams() 
+  useEffect(() => {
+    document.title = `Movisho: ${params.id}`
+  }, [params.id])
 
   return (
     <Suspense fallback={<MovieDetailLoader />}>
