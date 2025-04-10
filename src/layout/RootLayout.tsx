@@ -2,6 +2,7 @@ import { Outlet } from 'react-router'
 import Header from '../components/UI/Header'
 import Footer from '../components/UI/Footer'
 import { ThemeProvider } from '../context/ThemeContext'
+import { Analytics } from '@vercel/analytics/react'
 
 const RootLayout = () => {
   return (
@@ -12,6 +13,7 @@ const RootLayout = () => {
               <Outlet />
           </main>
           <Footer/>
+          <Analytics />
       </div>
     </ThemeProvider>
   )
