@@ -13,7 +13,7 @@ const MovieCard: React.FC<Props> = ({ movie } : Props) => {
   }
   return (
     <article className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm transition hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-      <NavLink to={`movies/${movie.id}`}>
+      <NavLink to={`/movies/${movie.id}`}>
         <figure>
           <img
             src={moviePic}

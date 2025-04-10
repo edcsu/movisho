@@ -22,6 +22,16 @@ const MovieDetail: React.FC<Props> = ({ movie } : Props) => {
     moviePic = MoviePoster
   }
 
+  let movieStatus = (
+    <span className="font-semibold text-emerald-500 dark:text-emerald-400">{movie.status}</span>
+  )
+
+  if (movie.status.toLowerCase() !== 'released') {
+    movieStatus = (
+      <span className="font-semibold text-yellow-400 dark:text-yellow-300">{movie.status}</span>
+    )
+  }
+
   return (
     <section>
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
@@ -104,6 +114,14 @@ const MovieDetail: React.FC<Props> = ({ movie } : Props) => {
 
                   <dd className="text-gray-700 sm:col-span-2 dark:text-gray-200">
                     {movie.imdb_id}
+                  </dd>
+                </div>
+
+                <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
+                  <dt className="font-medium text-gray-900 dark:text-white">Status</dt>
+
+                  <dd className="text-gray-700 sm:col-span-2 dark:text-gray-200">
+                    {movieStatus}
                   </dd>
                 </div>
 
