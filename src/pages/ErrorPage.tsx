@@ -4,9 +4,10 @@ import notFoundImage from "../assets/pagenotfound.svg"
 import serverErrorImage from "../assets/servererror.svg"
 import { ThemeProvider } from "../context/ThemeContext"
 import Footer from "../components/UI/Footer"
+import RouteError from "../types/routeerror"
 
-const ErrorPage = () => {
-  const error = useRouteError()
+const ErrorPage: React.FC = () => {
+  const error = useRouteError() as RouteError
 
   let title = "An error occured!"
   let message = "Something went wrong"
