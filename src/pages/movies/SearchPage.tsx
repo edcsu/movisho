@@ -2,13 +2,13 @@ import { Suspense } from "react";
 import { useLoaderData, Await, redirect } from "react-router-dom";
 import QueryResponse from "../../types/queryresponse";
 import MovieList from "../../components/UI/MovieList";
-import MovieDetailLoader from "../../components/UI/MovieDetailLoader";
 import type { ActionFunction, LoaderFunction } from "react-router";
+import MovieListLoader from "../../components/UI/MovieListLoader";
 
 const Search: React.FC = () => {
   const { results } = useLoaderData();
   return (
-    <Suspense fallback={<MovieDetailLoader />}>
+    <Suspense fallback={<MovieListLoader />}>
       <Await resolve={results}>
         {(foundResults: QueryResponse) => (
           <>
