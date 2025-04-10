@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router";
-import MovieDetails from "../pages/movies/MovieDetailsPage";
+import MovieDetails, { loader as movieDetailsLoader } from "../pages/movies/MovieDetailsPage";
 import RootLayout from "../layout/RootLayout";
-import MoviesPage from "../pages/movies/IndexPage";
-import Search from "../pages/movies/SearchPage";
+import MoviesPage, { loader as moviesNowLoader } from "../pages/movies/IndexPage";
+import Search, { loader as searchMovieLoader, action as searchMovieAction } from "../pages/movies/SearchPage";
 import ErrorPage from "../pages/ErrorPage";
-import TopRatedPage from "../pages/movies/TopRatedPage";
-import PopularPage from "../pages/movies/PopularPage";
-import UpcomingPage from "../pages/movies/Upcoming";
+import TopRatedPage, { loader as topRatedLoader } from "../pages/movies/TopRatedPage";
+import PopularPage, { loader as popularMoviesLoader } from "../pages/movies/PopularPage";
+import UpcomingPage, { loader as upcomingLoader } from "../pages/movies/Upcoming";
 
 const router = createBrowserRouter([
     {
@@ -16,35 +16,42 @@ const router = createBrowserRouter([
         children: [
             {
                 index : true,
-                element : <MoviesPage />
+                element : <MoviesPage />,
+                loader: moviesNowLoader
             },
             {
                 path : 'movies',
                 children: [
                     {
                         index : true,
-                        element : <MoviesPage />
+                        element : <MoviesPage />,
+                        // loader: MoviesNowLoader
                     },
                     {
                         path: 'popular',
-                        element : <PopularPage />
+                        element : <PopularPage />,
+                        loader: popularMoviesLoader
                     },
                     {
                         path: 'top',
-                        element : <TopRatedPage />
+                        element : <TopRatedPage />,
+                        loader: topRatedLoader
                     },
                     {
                         path: 'upcoming',
-                        element : <UpcomingPage />
+                        element : <UpcomingPage />,
+                        loader: upcomingLoader
                     },
                     {
                         path:  ':id',
-                        element: <MovieDetails />
+                        element: <MovieDetails />,
+                        loader: movieDetailsLoader
                     },
                     {
                         path:  'search',
-                        id: 'movie-detail',
-                        element: <Search />
+                        element: <Search />,
+                        action: searchMovieAction,
+                        loader: searchMovieLoader
                     },
                 ]
             }
