@@ -1,14 +1,13 @@
 import { Await, useLoaderData } from "react-router";
 import MovieList from "../../components/UI/MovieList";
-import { Suspense, useEffect } from "react";
+import { Suspense } from "react";
 import MovieResponse from "../../types/movieresponse";
 import MovieListLoader from "../../components/UI/MovieListLoader";
+import { useTitle } from "../../hooks/useTitle";
 
 const MoviesPage = () => {
   const { results } = useLoaderData();
-  useEffect(() => {
-    document.title = 'Movisho: Home'
-  }, [])
+  useTitle('Home')
   
   return (
     <section>
