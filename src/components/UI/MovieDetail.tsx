@@ -1,6 +1,8 @@
 import MovieDetailResponse from "../../types/moviedetail";
 import FamilyLogo from "../../assets/family.svg"
 import EighteenLogo from "../../assets/rated.svg"
+import MoviePoster from "../../assets/movieposter.jpeg"
+
 import { formatPriceToDollar } from "../../utils/converters";
 
 type Props = {
@@ -8,7 +10,7 @@ type Props = {
 };
 
 const MovieDetail: React.FC<Props> = ({ movie } : Props) => {
-  const moviePic = `${import.meta.env.VITE_TMDB_IMAGE_URL}/${movie.poster_path}`
+  let moviePic = `${import.meta.env.VITE_TMDB_IMAGE_URL}/${movie.poster_path}`
   const movieDate = new Date(movie.release_date).toLocaleDateString('en-us', {
     day : 'numeric',
     month : 'long',
@@ -16,6 +18,9 @@ const MovieDetail: React.FC<Props> = ({ movie } : Props) => {
   })
   const movieBudget = formatPriceToDollar(movie.budget)
   const movieRevenue = formatPriceToDollar(movie.revenue)
+  if (movie.poster_path === null || movie.poster_path === undefined || movie.poster_path.trim() === "") {
+    moviePic = MoviePoster
+  }
 
   return (
     <section>
@@ -73,19 +78,25 @@ const MovieDetail: React.FC<Props> = ({ movie } : Props) => {
                 <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
                   <dt className="font-medium text-gray-900 dark:text-white">Budget</dt>
 
-                  <dd className="text-gray-700 sm:col-span-2 dark:text-gray-200">{movieBudget}</dd>
+                  <dd className="text-gray-700 sm:col-span-2 dark:text-gray-200">
+                    {movie.budget === 0 ? "Not available" : movieBudget}
+                  </dd>
                 </div>
 
                 <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
                   <dt className="font-medium text-gray-900 dark:text-white">Revenue</dt>
 
-                  <dd className="text-gray-700 sm:col-span-2 dark:text-gray-200">{movieRevenue}</dd>
+                  <dd className="text-gray-700 sm:col-span-2 dark:text-gray-200">
+                    {movie.revenue === 0 ? "Not available" : movieRevenue}
+                  </dd>
                 </div>
 
                 <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
                   <dt className="font-medium text-gray-900 dark:text-white">Tagline</dt>
 
-                  <dd className="text-gray-700 sm:col-span-2 dark:text-gray-200">{movie.tagline}</dd>
+                  <dd className="text-gray-700 sm:col-span-2 dark:text-gray-200">
+                    {movie.tagline.trim() === "" ? "Not available": movie.tagline}
+                  </dd>
                 </div>
 
                 <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">

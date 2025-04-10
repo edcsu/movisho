@@ -1,12 +1,16 @@
 import { NavLink } from "react-router-dom"
 import { Result } from "../../types/movieresponse";
+import MoviePoster from "../../assets/movieposter.jpeg"
 
 type Props = {
   movie: Result
 };
 
 const MovieCard: React.FC<Props> = ({ movie } : Props) => {
-  const moviePic = `${import.meta.env.VITE_TMDB_IMAGE_URL}/${movie.poster_path}`
+  let moviePic = `${import.meta.env.VITE_TMDB_IMAGE_URL}/${movie.poster_path}`
+  if (movie.poster_path === null || movie.poster_path === undefined || movie.poster_path.trim() === "") {
+    moviePic = MoviePoster
+  }
   return (
     <article className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm transition hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <NavLink to={`movies/${movie.id}`}>
