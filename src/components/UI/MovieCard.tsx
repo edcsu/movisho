@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom"
 import { Result } from "../../types/movieresponse";
 import MoviePoster from "../../assets/movieposter.jpeg"
+import { Suspense } from "react";
+import ImageLoader from "./ImageLoader";
 
 type Props = {
   movie: Result
@@ -15,10 +17,12 @@ const MovieCard: React.FC<Props> = ({ movie } : Props) => {
     <article className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm transition hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <NavLink to={`/movies/${movie.id}`}>
         <figure>
-          <img
-            src={moviePic}
-            alt={movie.title} 
-          />
+          <Suspense fallback={<ImageLoader />}>
+            <img
+              src={moviePic}
+              alt={movie.title} 
+            />
+          </Suspense>
         </figure>
         <div className="flex flex-col justify-between p-4 leading-normal">
           <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{movie.title}</h2>
