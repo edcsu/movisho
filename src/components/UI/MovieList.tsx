@@ -1,3 +1,4 @@
+import MoviePagination from "../../types/moviepagination";
 import MovieResponse from "../../types/movieresponse";
 import AppPagination from "./AppPagination";
 import MovieCard from "./MovieCard"
@@ -7,7 +8,13 @@ type Props = {
 };
 
 const MovieList: React.FC<Props> = ({ response } : Props) => {
-  const { results } = response
+  const { results, page, total_pages } = response
+  const pagination: MoviePagination  = {
+    page,
+    total_pages,
+    onPageChange : (page: number) => {},
+    maxVisiblePages : 8,
+  }
   return (
     <>
       <div className="py-8 px-8 grid justify-items-center grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4">
@@ -15,7 +22,7 @@ const MovieList: React.FC<Props> = ({ response } : Props) => {
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
-      <AppPagination />
+      <AppPagination pagination={pagination} />
     </>
   )
 }
