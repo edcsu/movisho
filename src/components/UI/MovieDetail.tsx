@@ -32,6 +32,23 @@ const MovieDetail: React.FC<Props> = ({ movie } : Props) => {
     )
   }
 
+  let movieVoteAverage = (
+    <span className="text-emerald-500 dark:text-emerald-400">{movie.vote_average}</span>
+  )
+
+  if (movie.vote_average <= 3) {
+    movieVoteAverage = (
+      <span className="text-red-500 dark:text-red-400">
+        {movie.vote_average}
+      </span>)
+  } else if (movie.vote_average >= 4 && movie.vote_average <= 8) {
+    movieVoteAverage = (
+      <span className="text-slate-500 dark:text-slate-400">
+        {movie.vote_average}
+      </span>
+    )
+  }
+
   return (
     <section>
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
@@ -69,7 +86,7 @@ const MovieDetail: React.FC<Props> = ({ movie } : Props) => {
                   <dt className="font-medium text-gray-900 dark:text-white">Rating</dt>
 
                   <dd className="text-gray-700 sm:col-span-2 dark:text-gray-200">
-                    {movie.vote_average}/10 ({movie.vote_count} votes)
+                    {movieVoteAverage}/10 ({movie.vote_count} votes)
                   </dd>
                 </div>
 

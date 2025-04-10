@@ -2,12 +2,13 @@ import { Suspense } from "react"
 import { Await, useLoaderData } from "react-router-dom"
 import MovieDetailResponse from "../../types/moviedetail"
 import MovieDetail from "../../components/UI/MovieDetail"
+import MovieDetailLoader from "../../components/UI/MovieDetailLoader"
 
 const MovieDetails = () => {
   const { result } = useLoaderData()
 
   return (
-    <Suspense fallback={<p style={{textAlign: 'center'}}>Loading....</p>}>
+    <Suspense fallback={<MovieDetailLoader />}>
       <Await resolve={result}>
         {(movie: MovieDetailResponse) => <MovieDetail movie={movie} />}
       </Await>
