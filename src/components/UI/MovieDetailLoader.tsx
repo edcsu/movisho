@@ -1,6 +1,6 @@
 const MovieDetailLoader: React.FC = () => {
     return (
-        <div className="flex max-w-md mx-auto  px-6 py-10 bg-white rounded-lg shadow-lg animate-pulse dark:bg-gray-500">
+        <div className="flex max-w-md mx-auto my-6 p-6 bg-white rounded-lg shadow-lg animate-pulse dark:bg-gray-500">
         <div className="w-1/3 bg-gray-300 dark:bg-gray-600"></div>
     
         <div className="w-2/3 p-4 md:p-4">
