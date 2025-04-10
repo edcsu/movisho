@@ -4,6 +4,8 @@ import EighteenLogo from "../../assets/rated.svg"
 import MoviePoster from "../../assets/movieposter.jpeg"
 
 import { formatPriceToDollar } from "../../utils/converters";
+import { Suspense } from "react";
+import ImageLoader from "./ImageLoader";
 
 type Props = {
   movie: MovieDetailResponse
@@ -43,7 +45,7 @@ const MovieDetail: React.FC<Props> = ({ movie } : Props) => {
       </span>)
   } else if (movie.vote_average >= 4 && movie.vote_average <= 8) {
     movieVoteAverage = (
-      <span className="text-slate-500 dark:text-slate-400">
+      <span className="text-slate-500 dark:text-slate-300">
         {movie.vote_average}
       </span>
     )
@@ -52,15 +54,17 @@ const MovieDetail: React.FC<Props> = ({ movie } : Props) => {
   return (
     <section>
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-center md:gap-8">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-center md:gap-8 justify-items-center">
           <div>
-            <figure>
-              <img
-                className="rounded-tr-3xl rounded-bl-3xl"
-                src={moviePic}
-                alt={movie.title} 
-              />
-            </figure>
+            <Suspense fallback={<ImageLoader />}>
+              <figure>
+                <img
+                  className="rounded-tr-3xl rounded-bl-3xl"
+                  src={moviePic}
+                  alt={movie.title} 
+                />
+              </figure>
+            </Suspense>
           </div>
           <div>
           <div className="max-w-lg md:max-w-none">

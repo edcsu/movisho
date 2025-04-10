@@ -1,4 +1,4 @@
-import { useRouteError } from "react-router-dom"
+import { useRouteError } from "react-router"
 import Header from "../components/UI/Header"
 import notFoundImage from "../assets/pagenotfound.svg"
 import serverErrorImage from "../assets/servererror.svg"

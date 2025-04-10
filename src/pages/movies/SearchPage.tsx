@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { useLoaderData, Await, redirect } from "react-router-dom";
+import { useLoaderData, Await, redirect } from "react-router";
 import QueryResponse from "../../types/queryresponse";
 import MovieList from "../../components/UI/MovieList";
 import type { ActionFunction, LoaderFunction } from "react-router";

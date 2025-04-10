@@ -9,7 +9,7 @@ const RootLayout = () => {
     <ThemeProvider>
       <div className='flex flex-col min-h-screen'>
           <Header />
-          <main className='flex-grow dark:bg-gray-500'>
+          <main className='flex-grow dark:bg-gray-600'>
               <Outlet />
           </main>
           <Footer/>

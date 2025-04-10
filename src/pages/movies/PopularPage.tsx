@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Await, useLoaderData } from "react-router-dom";
+import { Await, useLoaderData } from "react-router";
 import MovieList from "../../components/UI/MovieList";
 import MovieResponse from "../../types/movieresponse";
 import MovieListLoader from "../../components/UI/MovieListLoader";
