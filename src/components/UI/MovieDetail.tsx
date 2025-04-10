@@ -6,6 +6,7 @@ import MoviePoster from "../../assets/movieposter.jpeg"
 import { formatPriceToDollar } from "../../utils/converters";
 import { Suspense } from "react";
 import ImageLoader from "./ImageLoader";
+import { motion } from "motion/react"
 
 type Props = {
   movie: MovieDetailResponse
@@ -53,7 +54,15 @@ const MovieDetail: React.FC<Props> = ({ movie } : Props) => {
 
   return (
     <section>
-      <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+            duration: 0.3,
+            scale: { type: "spring", visualDuration: 0.3, bounce: 0.25 },
+        }} 
+        className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8"
+      >
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-center md:gap-8 justify-items-center">
           <div>
             <Suspense fallback={<ImageLoader />}>
@@ -160,7 +169,7 @@ const MovieDetail: React.FC<Props> = ({ movie } : Props) => {
           </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }
