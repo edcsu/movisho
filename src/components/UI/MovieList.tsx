@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router";
 import MoviePagination from "../../types/moviepagination";
 import MovieResponse from "../../types/movieresponse";
 import AppPagination from "./AppPagination";
@@ -8,11 +9,14 @@ type Props = {
 };
 
 const MovieList: React.FC<Props> = ({ response } : Props) => {
+  const navigate = useNavigate();
   const { results, page, total_pages } = response
   const pagination: MoviePagination  = {
     page,
     total_pages,
-    onPageChange : (page: number) => {},
+    onPageChange : (page: number) => {
+      navigate(`/?page=${page}`)
+    },
     maxVisiblePages : 8,
   }
   return (

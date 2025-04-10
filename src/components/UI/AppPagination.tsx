@@ -43,21 +43,24 @@ const AppPagination: React.FC<Props> = ({ pagination} : Props) => {
     }
   }
 
-  const nextPageStyles = "flex items-center px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-600 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200";
+  const previousPageStyles = "flex items-center px-4 py-2 mx-1 text-gray-500 bg-slate-200 rounded-md dark:bg-gray-800 dark:text-gray-600"
+  const nextPageStyles = "flex items-center px-4 py-2 mx-1 text-gray-700 bg-slate-200 transition-colors duration-300 transform rounded-md dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-600 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200";
   const shownPageStyles = "items-center hidden px-4 py-2 mx-1 transition-colors duration-300 transform rounded-md sm:flex"
   return (
     <div className="flex justify-center mb-6">
-      <button 
+      <button
+        type="button" 
         onClick={() => onPageChange(page - 1)}
         disabled={page === 1}
-        className="flex items-center px-4 py-2 mx-1 text-gray-500 bg-white rounded-md cursor-not-allowed dark:bg-gray-800 dark:text-gray-600"
+        className={`${previousPageStyles} ${page === 1 ? 'cursor-not-allowed' : ' hover:bg-blue-600 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200 cursor-pointer'}`}
       >
-        previous
+        Previous
       </button>
 
       {/* Page Numbers */}
       {pageNumbers.map((number, index) => (
         <button
+          type="button" 
           key={typeof number === 'number' ? number : `ellipsis-${index}`}
           onClick={() => typeof number === 'number' && onPageChange(number)}
           disabled={typeof number !== 'number'}
@@ -72,9 +75,10 @@ const AppPagination: React.FC<Props> = ({ pagination} : Props) => {
       ))}
 
       <button
+        type="button" 
         onClick={() => onPageChange(page + 1)}
         disabled={page === total_pages} 
-        className={nextPageStyles}
+        className={`${nextPageStyles} ${page === total_pages ? 'cursor-not-allowed' : 'cursor-pointer'}`}
       >
         Next
       </button>
