@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import MovieResponse from "../../types/movieresponse";
 import MovieListLoader from "../../components/UI/MovieListLoader";
 import { useTitle } from "../../hooks/useTitle";
+import type { LoaderFunction } from "react-router";
 
 const MoviesPage = () => {
   const { results } = useLoaderData();
@@ -22,8 +23,11 @@ const MoviesPage = () => {
 
 export default MoviesPage
 
-const loadMovieResults = async() => {
-  const response = await fetch(`${import.meta.env.VITE_TMDB_BASE_URL}/movie/now_playing?language=en-US&page=1`,{
+const loadMovieResults = async({ request } : { request : Request }) => {
+  const url = new URL(request.url);
+  console.log(url)
+  const page = url.searchParams.get("page") || 1;
+  const response = await fetch(`${import.meta.env.VITE_TMDB_BASE_URL}/movie/now_playing?language=en-US&page=${page}`,{
     headers: {
       'Content-Type' : 'application/json',
       'Authorization' : `Bearer ${import.meta.env.VITE_BEARER_TOKEN}`
@@ -41,8 +45,8 @@ const loadMovieResults = async() => {
     }
 }
 
-export const loader = async () => {
+export const loader: LoaderFunction = async ({ request }) => {
   return {
-    results : loadMovieResults()
+    results : loadMovieResults({ request })
   }
 }
