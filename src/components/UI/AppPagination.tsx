@@ -16,7 +16,7 @@ const AppPagination: React.FC<Props> = ({ pagination} : Props) => {
   } else {
     const halfVisible = Math.floor(maxVisiblePages / 2);
     const startPage = Math.max(1, page - halfVisible);
-    let endPage = Math.min(total_pages, page + halfVisible);
+    const endPage = Math.min(total_pages, page + halfVisible);
 
     const shouldShowLeftEllipsis = startPage > 2;
     const shouldShowRightEllipsis = endPage < total_pages - 1;
@@ -46,8 +46,8 @@ const AppPagination: React.FC<Props> = ({ pagination} : Props) => {
     // Ensure page is always visible and within the limit
     if (!pageNumbers.includes(page)) {
       const tempPageNumbers: (number | '...')[] = [1];
-      let tempStart = Math.max(1, page - halfVisible);
-      let tempEnd = Math.min(total_pages, page + halfVisible);
+      const tempStart = Math.max(1, page - halfVisible);
+      const tempEnd = Math.min(total_pages, page + halfVisible);
       const tempShouldShowLeft = tempStart > 2;
       const tempShouldShowRight = tempEnd < total_pages - 1;
 
