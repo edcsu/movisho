@@ -295,41 +295,43 @@ const Header: React.FC = () =>{
       </div>)}
 
       {showMobileSearch && (
-        <Form className='md:hidden mx-7 mt-4' action='/movies/search' method='post' ref={searchRef}>
-          <label htmlFor="search">
-            <div className="relative rounded-md bg-white dark:bg-gray-300 pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
-              <input
-                name='search'
-                type="text"
-                id="search"
-                placeholder='Search'
-                className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
-              />
-              <span className="absolute inset-y-0 right-2 grid w-8 place-content-center">
-                <button
-                  type="submit"
-                  aria-label="Submit"
-                  className="rounded-full p-1.5 text-gray-700 transition-colors hover:bg-gray-100 cursor-pointer"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="size-4"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-                    />
-                  </svg>
-                </button>
-              </span>
-            </div>
-          </label>
-        </Form>
+        <>
+            <Form className='md:hidden mx-7 mt-4 pb-6' action='/movies/search' method='post' ref={searchRef}>
+              <label htmlFor="search">
+                <div className="relative rounded-md bg-white dark:bg-gray-300 pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+                  <input
+                    name='search'
+                    type="text"
+                    id="search"
+                    placeholder='Search'
+                    className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
+                  />
+                  <span className="absolute inset-y-0 right-2 grid w-8 place-content-center">
+                    <button
+                      type="submit"
+                      aria-label="Submit"
+                      className="rounded-full p-1.5 text-gray-700 transition-colors hover:bg-gray-100 cursor-pointer"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="size-4"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                        />
+                      </svg>
+                    </button>
+                  </span>
+                </div>
+              </label>
+            </Form>
+        </>
       )}
     </header>
   )
