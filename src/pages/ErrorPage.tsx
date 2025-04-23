@@ -34,7 +34,7 @@ const ErrorPage: React.FC = () => {
             {message}
           </p>
         </div>
-        <img src={image} alt={message} className="w-96 mx-auto" />
+        <img src={image} alt={message} className="w-70 mx-auto" />
       </section>
       <Footer />
     </ThemeProvider>

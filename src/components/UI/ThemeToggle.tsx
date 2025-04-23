@@ -9,7 +9,7 @@ const ThemeToggle: React.FC = () => {
     <button
       type='button'
       onClick={toggleDarkMode}
-      className="px-2 py-1 rounded border-1 border-gray-300 bg-white dark:bg-gray-800 text-black dark:text-white"
+      className="px-2 py-1 cursor-pointer rounded border-1 border-gray-300 bg-white dark:bg-gray-800 text-black dark:text-white"
     >
       {isDark ? '🌞' : '🌙'}
     </button>

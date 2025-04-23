@@ -9,6 +9,7 @@ const Header: React.FC = () =>{
   const searchRef = useRef<HTMLFormElement>(null)
   const location = useLocation()
   const [showMobileMenu, setShowMobileMenu] = useState(false)
+  const [showMobileSearch, setShowMobileSearch] = useState(false)
   const { isDark } = useTheme();
   const linkClasses = 'text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-blue-500/75'
   const activeClasses = 'text-blue-500 transition hover:text-gray-500/75'
@@ -25,6 +26,9 @@ const Header: React.FC = () =>{
   const handleMobileMenuToggle = () => {
     setShowMobileMenu(prevState => !prevState)
   }
+  const handleMobileSearchToggle = () => {
+    setShowMobileSearch(prevState => !prevState)
+  }
 
   return (
     <header className="bg-white dark:bg-gray-900">
@@ -35,7 +39,9 @@ const Header: React.FC = () =>{
               <span className="sr-only">Home</span>
               <div className='flex items-center'>
                 {isDark ? (<img className='h-12' src={darkLogo} alt='logo' />) : (<img className='h-12' src={logo} alt='logo' />)}
-                <span className="text-gray-500 text-2xl ml-2 dark:text-white dark:hover:text-white/75">Movisho</span>
+                <span className="text-gray-500 max-sm:hidden text-2xl ml-2 dark:text-white dark:hover:text-white/75">
+                  Movisho
+                </span>
               </div>
             </NavLink>
           </div>
@@ -98,7 +104,28 @@ const Header: React.FC = () =>{
 
           <div className="flex items-center gap-4">
             <ThemeToggle />
-            <Form action='/movies/search' method='post' ref={searchRef}>
+            <button
+              onClick={handleMobileSearchToggle}
+              type='button'
+              className="px-2 py-2 cursor-pointer md:hidden rounded border-1 border-gray-300 bg-white dark:bg-gray-800 text-black dark:text-white"
+            >
+              <span className="sr-only">Search</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                />
+              </svg>
+            </button>
+            <Form className='hidden md:block' action='/movies/search' method='post' ref={searchRef}>
               <label htmlFor="search">
                 <div className="relative rounded-md bg-white dark:bg-gray-300 pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
                   <input
@@ -137,22 +164,24 @@ const Header: React.FC = () =>{
 
           <div className="block md:hidden">
             <button
+              type="button"
               onClick={handleMobileMenuToggle}
-              className="rounded-sm bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75"
+              className="rounded-sm cursor-pointer bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75"
             >
               <span className="sr-only">Toggle</span>
               {!showMobileMenu && (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="size-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                  <title>breadcrumb</title>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>)}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="size-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                    <title>breadcrumb</title>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
               {showMobileMenu && (
                 <svg
                   className="size-5"
@@ -264,6 +293,44 @@ const Header: React.FC = () =>{
           </li>
         </ul>
       </div>)}
+
+      {showMobileSearch && (
+        <Form className='md:hidden mx-7 mt-4' action='/movies/search' method='post' ref={searchRef}>
+          <label htmlFor="search">
+            <div className="relative rounded-md bg-white dark:bg-gray-300 pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+              <input
+                name='search'
+                type="text"
+                id="search"
+                placeholder='Search'
+                className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
+              />
+              <span className="absolute inset-y-0 right-2 grid w-8 place-content-center">
+                <button
+                  type="submit"
+                  aria-label="Submit"
+                  className="rounded-full p-1.5 text-gray-700 transition-colors hover:bg-gray-100 cursor-pointer"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="size-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                    />
+                  </svg>
+                </button>
+              </span>
+            </div>
+          </label>
+        </Form>
+      )}
     </header>
   )
 }
