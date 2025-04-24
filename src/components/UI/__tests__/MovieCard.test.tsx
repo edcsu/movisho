@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import MovieCard from './MovieCard';
 import { BrowserRouter } from 'react-router';
+import MovieCard from '../MovieCard';
 
 describe('MovieCard', () => {
     const mockMovie = {
