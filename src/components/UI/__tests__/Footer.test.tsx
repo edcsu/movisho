@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import Footer from './Footer'
-import { ThemeProvider } from '../../context/ThemeContext'
+import Footer from '../Footer'
+import { ThemeProvider } from '../../../context/ThemeContext'
 
 // Mock window methods
 window.scrollTo = vi.fn()
