@@ -1,6 +1,6 @@
 import { describe, test, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import Search from './SearchPage';
+import Search from '../movies/SearchPage';
 import { useLoaderData, useSearchParams } from 'react-router';
 import MovieResponse from '../../types/movieresponse';
 
