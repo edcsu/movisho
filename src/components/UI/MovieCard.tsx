@@ -23,14 +23,15 @@ const MovieCard: React.FC<Props> = ({ movie } : Props) => {
         delay: 0.5,
         ease: [0, 0.71, 0.2, 1.01],
       }}
-      className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm transition hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+      className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm transition hover:bg-gray-100 hover:scale-103 hover:shadow-md hover:shadow-fuchsia-600 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
       >
       <NavLink to={`/movies/${movie.id}`}>
         <figure>
           <Suspense fallback={<ImageLoader />}>
             <img
               src={moviePic}
-              alt={movie.title} 
+              alt={movie.title}
+              className="max-sm:size-96"
             />
           </Suspense>
         </figure>

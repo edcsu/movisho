@@ -21,7 +21,7 @@ const MovieList: React.FC<Props> = ({ response } : Props) => {
   }
   return (
     <section role="presentation">
-      <div className="py-8 px-8 grid justify-items-center grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4">
+      <div className="py-8 px-8 grid justify-items-center grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4">
         {results.map( movie => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
