@@ -1,4 +1,3 @@
-// src/utils/darkMode.ts
 type Theme = 'light' | 'dark';
 
 const THEME_KEY = 'theme';
