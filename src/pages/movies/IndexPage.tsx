@@ -25,7 +25,6 @@ export default MoviesPage
 
 const loadMovieResults = async({ request } : { request : Request }) => {
   const url = new URL(request.url);
-  console.log(url)
   const page = url.searchParams.get("page") || 1;
   const response = await fetch(`${import.meta.env.VITE_TMDB_BASE_URL}/movie/now_playing?language=en-US&page=${page}`,{
     headers: {

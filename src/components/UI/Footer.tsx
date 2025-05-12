@@ -74,6 +74,20 @@ const Footer: React.FC = () => {
                 </svg>
               </a>
             </li>
+            <li>
+              <a 
+                href="https://www.buymeacoffee.com/skeda" 
+                rel="noreferrer noopener"
+                target="_blank"
+              >
+                <span className="sr-only">Buy Me A Coffee</span>
+                <img 
+                  src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" 
+                  alt="Buy Me A Coffee" 
+                  className="h-9"
+                  />
+                </a>
+            </li>
           </ul>
         </div>
       </div>
