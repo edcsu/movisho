@@ -69,7 +69,7 @@ describe('useDarkMode', () => {
             removeEventListener: vi.fn()
         };
 
-        global.window.matchMedia = vi.fn().mockReturnValue(mockMediaQueryList);
+        window.matchMedia = vi.fn().mockReturnValue(mockMediaQueryList);
 
         renderHook(() => useDarkMode());
 
